@@ -3,26 +3,11 @@ module BookKeeping
 end
 
 class Complement
-  def self.transcription(character)
-    case character
-    when "C"
-      "G"
-    when "G"
-      "C"
-    when "T"
-      "A"
-    when "A"
-      "U"
-    end
-  end
-  def self.of_dna(string)
-    unless string.match(/[^ATCG]/).nil?
-      ''
-    else
-      string
-      .split('')
-      .map{|i| transcription(i)}
-      .join('')
-    end
-  end
+
+ def self.of_dna(dna_strand)
+
+  return '' unless dna_strand.chars.all?{|nuc| nuc.match(/[ATCG]/)}
+  dna_strand.tr("GCTA", "CGAU")
+
+ end
 end
